@@ -16,6 +16,10 @@
     "index.js",
     "cli.js"
   ],
+  "keywords": [
+    "youtube",
+    "thumbnail"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/matiassingers/youtube-thumbnail"
