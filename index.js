@@ -5,6 +5,10 @@ var getYouTubeID = require('get-youtube-id');
 module.exports = function(url){
   var id = getYouTubeID(url);
 
+  if(!id && url.length === 11){
+    id = url
+  }
+
   return {
     default: {
       url: 'http://img.youtube.com/vi/' + id + '/default.jpg',
