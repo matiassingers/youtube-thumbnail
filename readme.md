@@ -1,5 +1,5 @@
 # youtube-thumbnail [![Build Status](http://img.shields.io/travis/matiassingers/youtube-thumbnail.svg?style=flat-square)](https://travis-ci.org/matiassingers/youtube-thumbnail) [![Dependency Status](http://img.shields.io/gemnasium/matiassingers/youtube-thumbnail.svg?style=flat-square)](https://gemnasium.com/matiassingers/youtube-thumbnail)
-> get thumbnail images for youtube url
+> get thumbnail images for youtube videos
 
 ## Install
 

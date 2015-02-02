@@ -1,7 +1,7 @@
 {
   "name": "youtube-thumbnail",
   "version": "0.1.0",
-  "description": "get thumbnail images for youtube url",
+  "description": "get thumbnail images for youtube videos",
   "main": "index.js",
   "scripts": {
     "test": "node test | tap-spec"
