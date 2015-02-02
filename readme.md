@@ -13,8 +13,10 @@ $ npm install --save youtube-thumbnail
 ```js
 var youtubeThumbnail = require('youtube-thumbnail');
 
-youtubeThumbnail()
+var thumbnail = youtubeThumbnail('https://www.youtube.com/watch?v=9bZkp7q19f0');
 
+console.log(thumbnail);
+// => { default: { url: 'http://img.youtube.com/vi/9bZkp7q19f0/default.jpg', ...
 ```
 
 
@@ -28,8 +30,21 @@ $ npm install --global youtube-thumbnail
 $ youtube-thumbnail --help
 
   Example
-    youtube-thumbnail
-    
+    youtube-thumbnail https://www.youtube.com/watch?v=9bZkp7q19f0
+       =>  http://img.youtube.com/vi/9bZkp7q19f0/default.jpg
+
+    youtube-thumbnail https://www.youtube.com/watch?v=9bZkp7q19f0 --high --open
+       =>  http://img.youtube.com/vi/9bZkp7q19f0/hqdefault.jpg
+
+  Options
+    --open
+          opens the thumbnail image in your browser
+
+    --medium
+          returns the medium resolution thumbnail
+
+    --high
+          returns the high resolution thumbnail
 ```
 
 
