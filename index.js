@@ -10,7 +10,7 @@ module.exports = function(url){
   }
 
   return {
-    default: {
+    'default': {
       url: 'http://img.youtube.com/vi/' + id + '/default.jpg',
       width: 120,
       height: 90
