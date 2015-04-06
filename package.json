@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "request-image-size": "1.1.1",
-    "tap-spec": "2.2.0",
-    "tape": "3.5.0"
+    "tap-spec": "3.0.0",
+    "tape": "4.0.0"
   }
 }
