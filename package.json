@@ -35,8 +35,8 @@
     "open": "0.0.5"
   },
   "devDependencies": {
-    "request-image-size": "1.1.1",
-    "tap-spec": "3.0.0",
+    "request-image-size": "1.2.2",
+    "tap-spec": "4.0.0",
     "tape": "4.0.0"
   }
 }
