@@ -26,7 +26,10 @@ function help() {
     '          returns the medium resolution thumbnail',
     '',
     '    --high',
-    '          returns the high resolution thumbnail'
+    '          returns the high resolution thumbnail',
+    '',
+    '    --maxres',
+    '          returns the maximum resolution thumbnail (if available)'
   ].join('\n'));
 }
 
@@ -53,7 +56,12 @@ if (argv.indexOf('--high') !== -1) {
   url = thumbnail.high.url;
 }
 
-console.log(thumbnail.default.url);
+if (argv.indexOf('--maxres') !== -1) {
+  url = thumbnail.maxres.url;
+}
+
+console.log(url);
+
 if (openImage) {
   return open(url);
 }

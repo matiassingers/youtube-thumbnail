@@ -7,7 +7,8 @@ var youtubeThumbnail = require('./');
 var sizes = [
   'default',
   'medium',
-  'high'
+  'high',
+  'maxres'
 ];
 
 test('match example cases', function(t) {
@@ -17,8 +18,13 @@ test('match example cases', function(t) {
 
   sizes.forEach(function(size){
     imageDimensions(thumbnail[size].url, function(err, dimensions) {
-      t.equal(thumbnail[size].height, dimensions.height, 'Height for size: ' + size);
-      t.equal(thumbnail[size].width, dimensions.width, 'Width for size: ' + size);
+      if (size === 'maxres') {
+        t.pass('Maximum resolution can be a variable width');
+        t.pass('Maximum resolution can be a variable height');
+      } else {
+        t.equal(thumbnail[size].height, dimensions.height, 'Height for size: ' + size);
+        t.equal(thumbnail[size].width, dimensions.width, 'Width for size: ' + size);
+      }
     });
   });
 });

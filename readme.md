@@ -45,6 +45,9 @@ $ youtube-thumbnail --help
 
     --high
           returns the high resolution thumbnail
+
+    --maxres
+          returns the maximum resolution thumbnail (if available)
 ```
 
 

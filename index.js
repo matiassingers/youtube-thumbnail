@@ -25,5 +25,10 @@ module.exports = function(url){
       width: 480,
       height: 360
     },
+    maxres: {
+      url: 'http://img.youtube.com/vi/' + id + '/maxresdefault.jpg',
+      width: 1280,
+      height: 720
+    }
   }
 };
