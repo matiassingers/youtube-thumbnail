@@ -2,7 +2,7 @@
 'use strict';
 
 var pkg = require('./package.json');
-var open = require('open');
+var spawn = require('child_process').spawn;
 var youtubeThumbnail = require('./');
 var argv = process.argv.slice(2);
 
@@ -13,10 +13,10 @@ function help() {
     '',
     '  Example',
     '    youtube-thumbnail https://www.youtube.com/watch?v=9bZkp7q19f0',
-    '       =>  http://img.youtube.com/vi/9bZkp7q19f0/default.jpg',
+    '       =>  https://img.youtube.com/vi/9bZkp7q19f0/default.jpg',
     '',
     '    youtube-thumbnail https://www.youtube.com/watch?v=9bZkp7q19f0 --high --open',
-    '       =>  http://img.youtube.com/vi/9bZkp7q19f0/hqdefault.jpg',
+    '       =>  https://img.youtube.com/vi/9bZkp7q19f0/hqdefault.jpg',
     '',
     '  Options',
     '    --open',
@@ -28,6 +28,33 @@ function help() {
     '    --high',
     '          returns the high resolution thumbnail'
   ].join('\n'));
+}
+
+function openUrl(url) {
+  var command;
+  var args;
+
+  if(process.platform === 'darwin'){
+    command = 'open';
+    args = [url];
+  } else if(process.platform === 'win32'){
+    command = 'cmd.exe';
+    args = ['/c', 'start', '', url];
+  } else {
+    command = 'xdg-open';
+    args = [url];
+  }
+
+  var child = spawn(command, args, {
+    detached: true,
+    stdio: 'ignore'
+  });
+
+  child.on('error', function(error){
+    console.error(error.message);
+    process.exit(1);
+  });
+  child.unref();
 }
 
 if (argv.indexOf('--help') !== -1) {
@@ -42,7 +69,15 @@ if (argv.indexOf('--version') !== -1) {
 
 var openImage = (argv.indexOf('--open') !== -1);
 
-var thumbnail = youtubeThumbnail(argv[0]);
+var thumbnail;
+
+try {
+  thumbnail = youtubeThumbnail(argv[0]);
+} catch(error){
+  console.error(error.message);
+  process.exit(1);
+}
+
 var url = thumbnail.default.url;
 
 if (argv.indexOf('--medium') !== -1) {
@@ -53,7 +88,7 @@ if (argv.indexOf('--high') !== -1) {
   url = thumbnail.high.url;
 }
 
-console.log(thumbnail.default.url);
+console.log(url);
 if (openImage) {
-  return open(url);
+  openUrl(url);
 }

@@ -1,10 +1,11 @@
 {
   "name": "youtube-thumbnail",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "get thumbnail images for youtube videos",
   "main": "index.js",
+  "types": "types.d.ts",
   "scripts": {
-    "test": "node test | tap-spec"
+    "test": "node test && tsc --noEmit --noImplicitAny --strictNullChecks --module commonjs test-types.ts"
   },
   "engines": {
     "node": ">=0.10.0"
@@ -14,7 +15,8 @@
   },
   "files": [
     "index.js",
-    "cli.js"
+    "cli.js",
+    "types.d.ts"
   ],
   "keywords": [
     "youtube",
@@ -31,12 +33,9 @@
   },
   "homepage": "https://github.com/matiassingers/youtube-thumbnail",
   "dependencies": {
-    "get-youtube-id": "0.1.3",
-    "open": "0.0.5"
+    "get-youtube-id": "0.1.3"
   },
   "devDependencies": {
-    "request-image-size": "1.2.2",
-    "tap-spec": "4.0.0",
-    "tape": "4.0.0"
+    "typescript": "2.0.10"
   }
 }
