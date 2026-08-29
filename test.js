@@ -1,12 +1,15 @@
 'use strict';
 
-var test = require('tape');
+var assert = require('assert');
 var youtubeThumbnail = require('./');
 
-test('returns HTTPS thumbnails for a YouTube URL', function(t) {
-  var thumbnail = youtubeThumbnail('https://www.youtube.com/watch?v=9bZkp7q19f0');
+function test(name, callback){
+  callback();
+  console.log('ok - ' + name);
+}
 
-  t.deepEqual(thumbnail, {
+test('returns HTTPS thumbnails for a YouTube URL', function(){
+  assert.deepEqual(youtubeThumbnail('https://www.youtube.com/watch?v=9bZkp7q19f0'), {
     'default': {
       url: 'https://img.youtube.com/vi/9bZkp7q19f0/default.jpg',
       width: 120,
@@ -23,12 +26,25 @@ test('returns HTTPS thumbnails for a YouTube URL', function(t) {
       height: 360
     }
   });
-  t.end();
 });
 
-test('accepts a YouTube video ID', function(t) {
+test('accepts a YouTube video ID', function(){
   var thumbnail = youtubeThumbnail('9bZkp7q19f0');
 
-  t.equal(thumbnail.default.url, 'https://img.youtube.com/vi/9bZkp7q19f0/default.jpg');
-  t.end();
+  assert.equal(thumbnail.default.url, 'https://img.youtube.com/vi/9bZkp7q19f0/default.jpg');
+});
+
+test('rejects missing and malformed inputs', function(){
+  assert.throws(function(){
+    youtubeThumbnail();
+  }, /must be a string/);
+  assert.throws(function(){
+    youtubeThumbnail('not-a-youtube-url');
+  }, /Invalid YouTube URL/);
+});
+
+test('rejects shell metacharacters in parsed video IDs', function(){
+  assert.throws(function(){
+    youtubeThumbnail('https://youtu.be/$(id)aaaaaa');
+  }, /Invalid YouTube URL/);
 });
