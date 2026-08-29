@@ -5,7 +5,7 @@
   "main": "index.js",
   "types": "types.d.ts",
   "scripts": {
-    "test": "node test | tap-spec"
+    "test": "node test | tap-spec && tsc --noEmit --noImplicitAny --strictNullChecks --module commonjs test-types.ts"
   },
   "engines": {
     "node": ">=0.10.0"
@@ -37,8 +37,8 @@
     "open": "0.0.5"
   },
   "devDependencies": {
-    "request-image-size": "1.2.2",
     "tap-spec": "4.0.0",
-    "tape": "4.0.0"
+    "tape": "4.0.0",
+    "typescript": "2.0.10"
   }
 }
